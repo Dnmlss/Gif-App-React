@@ -1,15 +1,19 @@
 import { useState } from 'react';
+import { AddCategory } from './components/AddCategory';
 
 // Functional component
 
 export const GifExpertApp = () => {
 	const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
 
-	const onAddCategory = () => {
-		setCategories(['DeathNote', ...categories]);
+	const onAddCategory = (newCategory) => {
+		// Evitamos que se guarden categorias iguales
+		if (categories.includes(newCategory)) return;
+		//console.log(newCategory);
+		setCategories([newCategory, ...categories]);
 
 		// Otra forma es utilizando un callback
-		//setCategories((cat) => [...categories, 'DeathNote']);
+		//setCategories((cat) => [newCategory, ...categories]);
 	};
 
 	return (
@@ -18,9 +22,9 @@ export const GifExpertApp = () => {
 			<h1>GifExpertApp</h1>
 
 			{/* Input */}
+			<AddCategory onNewCategory={(value) => onAddCategory(value)} />
 
 			{/* Listado de Gif */}
-			<button onClick={onAddCategory}>Agregar</button>
 			<ol>
 				{categories.map((category) => {
 					return <li key={category}> {category} </li>;
@@ -31,7 +35,7 @@ export const GifExpertApp = () => {
 	);
 };
 
-// Evitamos usar el .push en onAddCategory, porque .push muta un objeto o array, React trata de no mutar el estado. por ende debemos crear un nuevo estado, un nuevo array. Para eso utilizamos el operador spread [...categories, 'DeathNote']
+// Evitamos usar el .push en onAddCategory, porque .push muta un objeto o array, React trata de no mutar el estado. por ende debemos crear un nuevo estado, un nuevo array. Para eso utilizamos el operador spread [newCategory, ...categories]
 
-// [...categories, 'DeathNote'] Agrega debajo
-// ['DeathNote', ...categories] Agrega arriba
+// [...categories, newCategory] Agrega debajo
+// [newCategory, ...categories] Agrega arriba
