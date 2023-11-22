@@ -5,7 +5,7 @@ import { GifGrid } from './components/GifGrid';
 // Functional component
 
 export const GifExpertApp = () => {
-	const [categories, setCategories] = useState(['One Punch']);
+	const [categories, setCategories] = useState(['Death Note']);
 
 	const onAddCategory = (newCategory) => {
 		// Evitamos que se guarden categorias iguales
