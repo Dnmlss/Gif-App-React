@@ -1,13 +1,17 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const AddCategory = ({ onNewCategory }) => {
+	// State
 	const [inputValue, setInputValue] = useState(''); // Hook
 
+	// Metodo
 	// Desfragmentamos el evento para obtener el target.value (lo escrito en input)
 	const onInputChange = ({ target }) => {
 		setInputValue(target.value);
 	};
 
+	// Metodo submit
 	const onSubmit = (event) => {
 		// Evitamos que se refresque la pagina por defecto con el submit.
 		event.preventDefault();
@@ -24,7 +28,7 @@ export const AddCategory = ({ onNewCategory }) => {
 
 	return (
 		// Formulario
-		<form onSubmit={(event) => onSubmit(event)}>
+		<form onSubmit={(event) => onSubmit(event)} aria-label='form'>
 			<input
 				type='text'
 				placeholder='Buscar gifs'
@@ -33,6 +37,10 @@ export const AddCategory = ({ onNewCategory }) => {
 			/>
 		</form>
 	);
+};
+
+AddCategory.propTypes = {
+	onNewCategory: PropTypes.func.isRequired,
 };
 
 /* Obs:
