@@ -20,7 +20,6 @@ describe('Pruebas en <AddCategory />', () => {
 	test('debe llamar onNewCategory si el input tiene un valor', () => {
 		// Creamos el valor del input
 		const inputValue = 'Mortal Kombat';
-
 		// función Mock
 		const onNewCategory = jest.fn();
 
@@ -49,10 +48,14 @@ describe('Pruebas en <AddCategory />', () => {
 
 	test('no debe llamar el onNewCategory si el input esta vacío', () => {
 		const onNewCategory = jest.fn();
+
 		render(<AddCategory onNewCategory={onNewCategory} />);
 		const form = screen.getByRole('form');
+
 		fireEvent.submit(form);
+
 		expect(onNewCategory).toHaveBeenCalledTimes(0);
+
 		expect(onNewCategory).not.toHaveBeenCalled();
 	});
 });

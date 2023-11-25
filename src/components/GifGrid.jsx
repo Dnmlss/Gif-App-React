@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
 import { GifItem } from './GifItem';
 import { useFetchGifs } from '../hooks/useFetchGifs';
 
 export const GifGrid = ({ category }) => {
 	const { images, isLoading } = useFetchGifs(category);
-	console.log({ isLoading });
 
 	return (
 		<>
@@ -18,6 +18,10 @@ export const GifGrid = ({ category }) => {
 			</div>
 		</>
 	);
+};
+
+GifGrid.propTypes = {
+	category: PropTypes.string.isRequired,
 };
 
 // Hook de React que sirve para disparar efectos secundarios. Sería algún proceso que querramos ejecutar cuando algo suceda,por ej: cuando el counter cambie, lanzamos un efecto, cuando agregamos una categoria, lanzamos un efecto, cuando el componente se renderiza por primera vez, lanzamos un efecto, lanzamos los efectos secuandarios en cualquier punto que querramos.
